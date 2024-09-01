@@ -1,0 +1,171 @@
+---
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='description' content='Astro description' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link
+      href='https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap'
+      rel='stylesheet'
+    />
+    <title>{title}</title>
+    <meta name='generator' content={Astro.generator} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+<style is:global>
+  :root {
+    --color-red: #890302;
+    --color-brown: #842810;
+    --color-green: #605c38;
+    --color-terracotta: #8a4a29;
+    --color-pink: #ce9a97;
+    --color-beige: #f1e8e3;
+
+    --color-white: #ffffff;
+    --color-black: #151515;
+
+    --font-sans: 'DM Sans', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    color: var(--color-black);
+    margin-bottom: 2rem;
+  }
+
+  /* 
+    Font scale utilities
+*/
+
+  .heading-1 {
+    font-size: 3.815rem;
+    line-height: 1.25;
+    font-family: var(--font-serif);
+    letter-spacing: 0.2rem;
+  }
+  .heading-2 {
+    font-size: 3.052rem;
+    line-height: 1.25;
+    font-family: var(--font-serif);
+    letter-spacing: 0.2rem;
+  }
+  .heading-3 {
+    font-size: 2.441rem;
+    line-height: 1.25;
+    font-family: var(--font-serif);
+    letter-spacing: 0.2rem;
+  }
+  .heading-4 {
+    font-size: 1.953rem;
+    line-height: 1.25;
+    font-family: var(--font-serif);
+    letter-spacing: 0.2rem;
+  }
+  .heading-5 {
+    font-size: 1.563rem;
+    line-height: 1.25;
+    font-family: var(--font-serif);
+    letter-spacing: 0.2rem;
+  }
+  .heading-6 {
+    font-size: 1.25rem;
+    line-height: 1.25;
+    font-family: var(--font-serif);
+    letter-spacing: 0.2rem;
+  }
+  .text-small {
+    font-size: 0.8rem;
+  }
+
+  .font-bold {
+    font-weight: 700;
+  }
+
+  /*
+  1. Use a more-intuitive box-sizing model.
+*/
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  /*
+  2. Remove default margin
+*/
+  * {
+    margin: 0;
+  }
+  /*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+  body {
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--color-white);
+  }
+  /*
+  5. Improve media defaults
+*/
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+  /*
+  6. Remove built-in form typography styles
+*/
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+  /*
+  7. Avoid text overflows
+*/
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+  /*
+  8. Create a root stacking context
+*/
+  #root,
+  #__next {
+    isolation: isolate;
+  }
+</style>

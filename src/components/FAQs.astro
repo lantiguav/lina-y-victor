@@ -1,0 +1,32 @@
+---
+const {} = Astro.props
+---
+
+<div class="faqs">
+    <h2 class="faqs__title heading-2">Preguntas frecuentes</h2>
+
+    <dl>
+        <dt>¿Pueden ir niños?</dt>
+        <dd>Nos encantan los niños, sin embargo hemos decidido que nuestra ceremonia sea solo para adultos</dd>
+
+        <dt>¿Me puede acompañar mi pareja?</dt>
+        <dd>Debido a limitaciones de espacio, te rogamos que asistas sin acompañante, a menos que en tu invitación se indique específicamente "y un acompañante".</dd>
+
+    </dl>
+
+</div>
+
+
+<style>
+    .faqs {
+        text-align: center;
+    }
+
+    dt {
+        font-weight: 700;
+    }
+
+    dd:not(:last-child) {
+        margin-block-end: 1rem;
+    }
+</style>

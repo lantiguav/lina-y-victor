@@ -1,0 +1,103 @@
+---
+// interface Props {
+// 	title: string;
+// 	body: string;
+// 	href: string;
+// }
+
+const { name } = Astro.props
+---
+
+<header class='hero'>
+  <div class='hero__image-container'>
+    <img
+      class='hero__image'
+      src='../../src/images/proposal-photo.jpg'
+      alt='proposal'
+    />
+  </div>
+
+  <h1 class='hero__title title heading-1'>
+    <span class='title__name'>Lina</span>
+    <span class='title__connector heading-5'>y</span>
+    <span class='title__name'>Victor</span>
+  </h1>
+
+  {
+    name ? (
+      <p class='hero__copy'>
+        Invitan a <span class='hero__invitee'>{name}</span> a su ceremonia de
+        boda
+      </p>
+    ) : (
+      <p class='hero__copy'>Te invitan a su ceremonia de boda</p>
+    )
+  }
+
+  <p class='hero__date'>08 . 12 . 2024</p>
+</header>
+
+<style>
+  .hero {
+    text-align: center;
+    /* letter-spacing: 0.2rem; */
+    /* min-height: 100svh; */
+  }
+
+  .hero__image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    max-width: 25rem;
+    margin: 0 auto;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: black;
+      opacity: 0.2;
+    }
+  }
+
+  .hero__image {
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  .hero__title {
+    text-align: center;
+    /* letter-spacing: 0.2rem; */
+    width: max-content;
+    margin-block-start: 2rem;
+    margin-inline: auto;
+  }
+
+  .title__connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    &::before,
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 100%;
+      height: 0.125rem;
+      background-color: var(--color-black);
+
+      vertical-align: middle;
+    }
+  }
+
+  .hero__copy {
+    margin-block-start: 2rem;
+  }
+
+  .hero__date {
+    margin-block-start: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+  }
+</style>

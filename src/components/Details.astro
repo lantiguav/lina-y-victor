@@ -1,0 +1,82 @@
+---
+const {} = Astro.props
+---
+
+<div class='details'>
+  <h2 class='details__title heading-2'>Detalles</h2>
+  <dl>
+    <dt class='heading-6'>Fecha</dt>
+    <dd>Domingo 08 de Diciembre, 2024</dd>
+
+    <dt class='heading-6'>Hora</dt>
+    <dd>6:00 de la tarde a 10:00 de la noche</dd>
+
+    <dt class='heading-6'>Lugar</dt>
+    <dd>Event Spot. Plaza Las Américas II, Av. Winston Churchill</dd>
+
+    <dt class='heading-6'>Código de vestimenta</dt>
+    <dd>
+      <dl>
+        <p>Formal</p>
+        <dt>Caballeros:</dt>
+        <dd>
+          Chacabanas blancas o colores claros, o trajes negros, grises o azules.
+        </dd>
+
+        <dt>Damas:</dt>
+        <dd>Vestidos formales inspirados en estos colores:</dd>
+        <div class='details__color-palette color-palette'>
+          <div class='color-palette_item green' title='green color'></div>
+          <div class='color-palette_item red' title='red color'></div>
+          <div class='color-palette_item brown' title='brown color'></div>
+          <div class='color-palette_item terracotta' title='terracotta color'>
+          </div>
+          <div class='color-palette_item pink' title='pink color'></div>
+        </div>
+      </dl>
+    </dd>
+  </dl>
+</div>
+
+<style>
+  .details {
+    text-align: center;
+  }
+
+  dt {
+    font-weight: 700;
+  }
+
+  p,
+  dd:not(:last-child) {
+    margin-block-end: 1rem;
+  }
+
+  .color-palette {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .color-palette_item {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+  }
+
+  .red {
+    background: var(--color-red);
+  }
+  .brown {
+    background: var(--color-brown);
+  }
+  .green {
+    background: var(--color-green);
+  }
+  .terracotta {
+    background: var(--color-terracotta);
+  }
+  .pink {
+    background: var(--color-pink);
+  }
+</style>
