@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Hero from '../components/Hero.astro'
+import Details from '../components/Details.astro'
+import RSVP from '../components/RSVP.astro'
+import Gifts from '../components/Gifts.astro'
+import FAQs from '../components/FAQs.astro'
+
+import invitees from '../data/invitees.json'
+
+const { slug } = Astro.params
+
+let invitee = invitees.find((_invitee) => {
+  return _invitee.slug === slug
+})
+
+if (slug === undefined) {
+  invitee = { name: '', slug: '' }
+}
+
+if (!invitee) {
+  Astro.response.status = 404
+  Astro.response.statusText = 'Invitado no encontrado.'
+}
+
+let successMessage = '';
+const errors = { name: '', assisting: '', notes: '' }
+if (Astro.request.method === 'POST') {
+  try {
+    const data = await Astro.request.formData()
+    const name = data.get('name')
+    const notes = data.get('notes')
+    const slug = data.get('slug')
+    const assisting = data.get('assisting')
+
+    console.log(name, data)
+
+    if (typeof name !== 'string' || name.length < 1) {
+      errors.name += 'Por favor ingrese su nombre. '
+    }
+    if (typeof assisting !== 'string' || assisting.length < 1) {
+      errors.assisting += 'Por favor confirme su asistencia. '
+    }
+
+    const hasErrors = Object.values(errors).some((msg) => msg)
+    console.log(hasErrors)
+    if (!hasErrors) {
+      const res = await fetch(
+        `https://docs.google.com/forms/d/e/1FAIpQLSeq5ev4GlLobQLouotU8fMBsMZ8PJjADIofhAzZhGchdqTB-A/formResponse?submit=Submit?usp=pp_url&entry.2029760352=${name}&entry.751411364=${assisting}&entry.266478440=${notes}&entry.1093102812=${slug}`
+      )
+
+      console.log(res)
+      if (res.status == 200) {
+        successMessage = 'Hemos recibido tu confirmación, gracias.'
+        console.log('formulario enviado exitosamente')
+      }
+    }
+    console.log('after validation')
+
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message)
+    }
+  }
+}
+---
+
+<Layout title='Lina y Victor'>
+  <main>
+    <Hero name={invitee.name} />
+    <Details />
+    <FAQs />
+    <Gifts />
+    <RSVP slug={invitee.slug} name={invitee.name} errors={errors} successMessage={successMessage}/>
+  </main>
+</Layout>
+
+<style>
+  main {
+    padding: 2rem;
+    max-width: 50rem;
+    margin-inline: auto;
+    display: grid;
+    gap: 3rem;
+    text-align: left;
+  }
+</style>
