@@ -10,6 +10,8 @@ export function getStaticPaths() {
 
 const { invitee } = Astro.params
 const { name } = Astro.props
+
+export const prerender = true;
 ---
 
 <Invitation slug={invitee} name={name} />
