@@ -1,20 +1,13 @@
 ---
-// interface Props {
-// 	title: string;
-// 	body: string;
-// 	href: string;
-// }
+import { Image } from 'astro:assets';
+import heroImage from '../../src/images/proposal-photo.jpg';
 
 const { name } = Astro.props
 ---
 
 <header class='hero'>
   <div class='hero__image-container'>
-    <img
-      class='hero__image'
-      src='../../src/images/proposal-photo.jpg'
-      alt='proposal'
-    />
+    <Image class='hero__image' src={heroImage} alt="Lina y Victor" width="400" height="533.33"/>
   </div>
 
   <h1 class='hero__title title heading-1'>
@@ -49,6 +42,7 @@ const { name } = Astro.props
     overflow: hidden;
     border-radius: 0.5rem;
     max-width: 25rem;
+    aspect-ratio: 3 / 4;
     margin: 0 auto;
 
     &::after {
@@ -61,7 +55,6 @@ const { name } = Astro.props
   }
 
   .hero__image {
-    aspect-ratio: 3 / 4;
     object-fit: cover;
   }
 
