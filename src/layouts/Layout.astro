@@ -111,6 +111,18 @@ const { title } = Astro.props
     font-weight: 700;
   }
 
+  a {
+    text-underline-offset: 0.25rem;
+    color: var(--color-brown);
+    transition: all 200ms ease-in;
+
+    &:hover,
+    &:active,
+    &:focus-visible {
+        color: var(--color-red);
+    }
+  }
+
   /*
   1. Use a more-intuitive box-sizing model.
 */

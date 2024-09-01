@@ -1,37 +1,48 @@
 ---
 const { slug, name, errors, successMessage } = Astro.props
-const inputDisabled = name ? true : false;
+const inputDisabled = name ? true : false
 ---
 
-<div class='rsvp' id="rsvp">
+<div class='rsvp' id='rsvp'>
   <h2 class='rsvp__title heading-2'>RSVP</h2>
+  <p>
+    Por favor, confirma tu asistencia antes del 08 de Noviembre. Agradecemos tu
+    pronta respuesta para ayudarnos con la planificación del evento
+  </p>
 
-  {successMessage && <p class="success">{successMessage}</p>}
-  <form method='POST' action="#rsvp">
+  {successMessage && <p class='success'>{successMessage}</p>}
+  <form method='POST' action='#rsvp'>
     <label>
-      <span class="label">Tu nombre</span>
-      <input type='text' name='name' id='name' required value={name} readonly={inputDisabled}/>
+      <span class='label'>Tu nombre</span>
+      <input
+        type='text'
+        name='name'
+        id='name'
+        required
+        value={name}
+        readonly={inputDisabled}
+      />
     </label>
-    {errors.name && <p class="error">{errors.name}</p>}
+    {errors.name && <p class='error'>{errors.name}</p>}
 
     <fieldset>
-      <legend class="label">¿Asistirás?</legend>
+      <legend class='label'>¿Asistirás?</legend>
 
-      <div class="radio-wrapper">
+      <div class='radio-wrapper'>
         <input type='radio' id='yes' name='assisting' value='Yes' required />
         <label for='yes'>Sí</label>
       </div>
 
-      <div class="radio-wrapper">
+      <div class='radio-wrapper'>
         <input type='radio' id='no' name='assisting' value='No' />
         <label for='no'>No</label>
       </div>
     </fieldset>
-    {errors.assisting && <p class="error">{errors.assisting}</p>}
+    {errors.assisting && <p class='error'>{errors.assisting}</p>}
 
     <label>
-      <span class="label">Notas (opcional)</span>
-      <textarea name='notes' id='notes' />
+      <span class='label'>Notas (opcional)</span>
+      <textarea name='notes' id='notes'></textarea>
     </label>
 
     <input type='hidden' name='slug' value={slug} />
@@ -41,9 +52,12 @@ const inputDisabled = name ? true : false;
 </div>
 
 <style>
-    
   .rsvp {
     margin-block-end: 2rem;
+  }
+
+  p {
+    margin-block-end: 1rem;
   }
 
   form {
@@ -68,23 +82,25 @@ const inputDisabled = name ? true : false;
 
   .radio-wrapper {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
   }
 
-  input,
+  input[type='text'],
   textarea {
     width: 100%;
     resize: vertical;
     padding: 0.25rem;
     border-radius: 0.25rem;
+    border: 0.125rem solid currentColor;
+  }
+
+  input[type='radio'] {
     accent-color: var(--color-green);
-    border: 0.125rem solid currentColor
   }
 
   input:read-only {
     background: #f1f1f1;
-
-
   }
 
   button {
@@ -101,12 +117,12 @@ const inputDisabled = name ? true : false;
 
     &:hover,
     &:focus-visible {
-        color: var(--color-black);
-        background-color: var(--color-white);
+      color: var(--color-black);
+      background-color: var(--color-white);
     }
 
     &:active {
-        background-color: #f1f1f1;
+      background-color: #f1f1f1;
     }
   }
 
@@ -122,5 +138,4 @@ const inputDisabled = name ? true : false;
     margin-block-end: 1rem;
     font-weight: 700;
   }
-  
 </style>
