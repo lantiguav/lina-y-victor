@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import heroImage from '../../src/images/proposal-photo.jpg';
+import heroImage from '../../src/images/hero-image.JPEG';
 
 const { name } = Astro.props
 ---
@@ -33,16 +33,15 @@ const { name } = Astro.props
 <style>
   .hero {
     text-align: center;
-    /* letter-spacing: 0.2rem; */
-    /* min-height: 100svh; */
   }
 
   .hero__image-container {
     position: relative;
     overflow: hidden;
     border-radius: 0.5rem;
-    max-width: 25rem;
-    aspect-ratio: 3 / 4;
+    /* max-width: 25rem; */
+    max-height: 28.25rem;
+    /* aspect-ratio: 3 / 4; */
     margin: 0 auto;
 
     &::after {
@@ -56,6 +55,7 @@ const { name } = Astro.props
 
   .hero__image {
     object-fit: cover;
+    margin: 0 auto;
   }
 
   .hero__title {
