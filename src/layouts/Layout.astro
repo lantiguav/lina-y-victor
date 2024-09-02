@@ -1,21 +1,23 @@
 ---
-import  SpeedInsights  from "@vercel/speed-insights/astro"
+import SpeedInsights from '@vercel/speed-insights/astro'
 
 interface Props {
   title: string
 }
 
-
 const { title } = Astro.props
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang='es'>
   <head>
     <meta charset='UTF-8' />
-    <meta name='description' content='Astro description' />
+    <meta name='description' content='Invitación de boda de Lina y Victor' />
     <meta name='viewport' content='width=device-width' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+    <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
+    <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
+    <link rel='manifest' href='/site.webmanifest' />
     <link rel='preconnect' href='https://fonts.googleapis.com' />
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
     <link
@@ -123,7 +125,7 @@ const { title } = Astro.props
     &:hover,
     &:active,
     &:focus-visible {
-        color: var(--color-red);
+      color: var(--color-red);
     }
   }
 
