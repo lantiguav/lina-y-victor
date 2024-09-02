@@ -48,6 +48,30 @@ const { title } = Astro.props
     --font-serif: 'Playfair Display', serif;
 
     font-family: var(--font-sans);
+
+    /* Component properties that depend on breakpoints */
+    --hero-image-aspect-ratio: 3 / 4;
+    --hero-image-max-height: unset;
+  }
+
+  /* SM breakpoint */
+  @media (min-width: 30em) {
+    :root {
+      --hero-image-aspect-ratio: unset;
+      --hero-image-max-height: 28.25rem;
+    }
+  }
+
+  /* MD breakpoint */
+  @media (min-width: 48em) {
+    :root {
+    }
+  }
+
+  /* LG breakpoint */
+  @media (min-width: 62em) {
+    :root {
+    }
   }
 
   h1,
