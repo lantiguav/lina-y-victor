@@ -1,5 +1,6 @@
 ---
 const { slug, name, errors, successMessage } = Astro.props
+const inputDisabled = name ? true : false
 ---
 
 <div class='rsvp' id='rsvp'>
@@ -14,18 +15,14 @@ const { slug, name, errors, successMessage } = Astro.props
   <form method='POST' action='#rsvp'>
     <label>
       <span class='label'>Tu nombre</span>
-      {name ? 
-        <span>{name}</span>
-        <input type="hidden" name="name" id="name" value={name}/>
-        : 
-        <input
-          type='text'
-          name='name'
-          id='name'
-          required
-          value={name}
-        />
-        }
+      <input
+        type='text'
+        name='name'
+        id='name'
+        required
+        value={name}
+        readonly={inputDisabled}
+      />
     </label>
     {errors.name && <p class='error'>{errors.name}</p>}
 
@@ -104,7 +101,15 @@ const { slug, name, errors, successMessage } = Astro.props
   }
 
   input:read-only {
-    background: #f1f1f1;
+    padding: 0;
+    border: 0;
+
+    &:hover,
+    &:focus,
+    &:focus-visible,
+    &:active {
+        outline: none;
+    }
   }
 
   button {
@@ -126,7 +131,7 @@ const { slug, name, errors, successMessage } = Astro.props
     }
 
     &:active {
-      background-color: #f1f1f1;
+      background-color: var(--color-gray);
     }
   }
 
