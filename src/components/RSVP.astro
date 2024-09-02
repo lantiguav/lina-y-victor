@@ -148,6 +148,11 @@ const inputDisabled = name ? true : false
     margin-block-end: 1rem;
     font-weight: 700;
   }
-
-
 </style>
+
+<script>
+  // Prevent form submission on page reload
+  if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href)
+  }
+</script>
