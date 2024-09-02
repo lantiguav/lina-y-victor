@@ -1,6 +1,5 @@
 ---
 const { slug, name, errors, successMessage } = Astro.props
-const inputDisabled = name ? true : false
 ---
 
 <div class='rsvp' id='rsvp'>
@@ -15,14 +14,18 @@ const inputDisabled = name ? true : false
   <form method='POST' action='#rsvp'>
     <label>
       <span class='label'>Tu nombre</span>
-      <input
-        type='text'
-        name='name'
-        id='name'
-        required
-        value={name}
-        readonly={inputDisabled}
-      />
+      {name ? 
+        <span>{name}</span>
+        <input type="hidden" name="name" id="name" value={name}/>
+        : 
+        <input
+          type='text'
+          name='name'
+          id='name'
+          required
+          value={name}
+        />
+        }
     </label>
     {errors.name && <p class='error'>{errors.name}</p>}
 

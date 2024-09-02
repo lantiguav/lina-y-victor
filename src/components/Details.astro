@@ -16,30 +16,33 @@ const {} = Astro.props
 
     <dt class='heading-6'>Código de vestimenta</dt>
     <dd>
+      <p>Formal</p>
       <dl>
-        <p>Formal</p>
         <dt>Caballeros:</dt>
         <dd>
-          Chacabanas blancas o colores claros. Alternativamente pueden usar trajes negros, grises o azules
+          Chacabanas blancas o colores claros. Alternativamente pueden usar
+          trajes negros, grises o azules
         </dd>
 
         <dt>Damas:</dt>
-        <dd>Vestidos formales inspirados en estos colores:</dd>
-        <div class='details__color-palette color-palette'>
-          <div class='color-palette_item green' title='green color'></div>
-          <div class='color-palette_item red' title='red color'></div>
-          <div class='color-palette_item brown' title='brown color'></div>
-          <div class='color-palette_item terracotta' title='terracotta color'>
+        <dd>
+          Vestidos formales inspirados en estos colores:
+
+          <div class='details__color-palette color-palette'>
+            <div class='color-palette_item green' title='green color'></div>
+            <div class='color-palette_item red' title='red color'></div>
+            <div class='color-palette_item brown' title='brown color'></div>
+            <div class='color-palette_item terracotta' title='terracotta color'>
+            </div>
+            <div class='color-palette_item pink' title='pink color'></div>
           </div>
-          <div class='color-palette_item pink' title='pink color'></div>
-        </div>
+        </dd>
       </dl>
     </dd>
   </dl>
 </div>
 
 <style>
-
   dt {
     font-weight: 700;
   }
@@ -53,6 +56,7 @@ const {} = Astro.props
     display: flex;
     justify-content: center;
     gap: 1rem;
+    margin-block-start: 1rem;
   }
 
   .color-palette_item {
