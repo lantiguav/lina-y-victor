@@ -10,7 +10,8 @@ const inputDisabled = name ? true : false
     pronta respuesta para ayudarnos con la planificación del evento
   </p>
 
-  {successMessage && <p class='success'>{successMessage}</p>}
+  {successMessage && <p class='successBanner'>{successMessage}</p>}
+  {errors.form && <p class='errorBanner'>{errors.form}</p>}
   <form method='POST' action='#rsvp'>
     <label>
       <span class='label'>Tu nombre</span>
@@ -130,7 +131,7 @@ const inputDisabled = name ? true : false
     color: var(--color-red);
   }
 
-  .success {
+  .successBanner {
     background-color: var(--color-green);
     border-radius: 0.25rem;
     padding: 0.5rem;
@@ -138,4 +139,15 @@ const inputDisabled = name ? true : false
     margin-block-end: 1rem;
     font-weight: 700;
   }
+
+  .errorBanner {
+    background-color: var(--color-red);
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    color: var(--color-white);
+    margin-block-end: 1rem;
+    font-weight: 700;
+  }
+
+
 </style>
