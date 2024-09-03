@@ -45,7 +45,12 @@ const inputDisabled = name ? true : false
 
     <input type='hidden' name='slug' value={slug} />
 
-    <button type='submit'>ENVIAR</button>
+    <button
+      id='form-button'
+      type='submit'
+      class='rsvp__button'>
+      <span id='form-button-text' class='rsvp__button-text'> ENVIAR </span>
+    </button>
   </form>
 </div>
 
@@ -62,6 +67,46 @@ const inputDisabled = name ? true : false
     text-align: left;
     display: grid;
     gap: 1rem;
+  }
+
+  .rsvp__button {
+    border: none;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    border: 0.125rem solid currentColor;
+    transition: all 200ms ease-in;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-black);
+      background-color: var(--color-white);
+    }
+
+    &:active {
+      background-color: var(--color-gray);
+    }
+  }
+
+  .rsvp__button--loading::after {
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    inset: 0;
+    border: 0.25rem solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
   }
 
   fieldset {
@@ -109,29 +154,6 @@ const inputDisabled = name ? true : false
     }
   }
 
-  button {
-    border: none;
-    background-color: var(--color-black);
-    color: var(--color-white);
-    padding: 0.25rem;
-    border-radius: 0.25rem;
-    font-weight: 700;
-    cursor: pointer;
-    width: 100%;
-    border: 0.125rem solid currentColor;
-    transition: all 200ms ease-in;
-
-    &:hover,
-    &:focus-visible {
-      color: var(--color-black);
-      background-color: var(--color-white);
-    }
-
-    &:active {
-      background-color: var(--color-gray);
-    }
-  }
-
   .error {
     color: var(--color-red);
   }
@@ -153,17 +175,32 @@ const inputDisabled = name ? true : false
     margin-block-end: 1rem;
     font-weight: 700;
   }
+
+  @keyframes button-loading-spinner {
+    from {
+      transform: rotate(0turn);
+    }
+
+    to {
+      transform: rotate(1turn);
+    }
+  }
 </style>
 
 <script>
   const form = document.getElementById('rsvp-form')
   const formMessage = document.getElementById('form-message')
+  const button = document.getElementById('form-button')
+  const buttonText = document.getElementById('form-button-text')
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault()
     const formData = new FormData(e.target)
 
     formMessage.classList.add('hidden')
+    button.classList.add('rsvp__button--loading')
+    button.disabled = true
+    buttonText.innerHTML = 'Enviando'
 
     const object = {}
     formData.forEach((value, key) => (object[key] = value))
@@ -184,19 +221,25 @@ const inputDisabled = name ? true : false
         formMessage.classList.add('successBanner')
         formMessage.classList.remove('errorBanner')
         formMessage.classList.remove('hidden')
+
+        form.reset()
       } else {
         formMessage.classList.add('errorBanner')
         formMessage.classList.remove('successBanner')
         formMessage.classList.remove('hidden')
       }
     } catch (e) {
-        console.log(e)
-        formMessage.innerHTML = 'Se mensaje no pudo ser enviado debido a un error en el navegador.'
+      console.log(e)
+      formMessage.innerHTML =
+        'Se mensaje no pudo ser enviado debido a un error en el navegador.'
 
-        formMessage.classList.add('errorBanner')
-        formMessage.classList.remove('successBanner')
-        formMessage.classList.remove('hidden')
-
+      formMessage.classList.add('errorBanner')
+      formMessage.classList.remove('successBanner')
+      formMessage.classList.remove('hidden')
     }
+
+    button.classList.remove('rsvp__button--loading')
+    button.disabled = false;
+    buttonText.innerHTML = 'Enviar'
   })
 </script>
