@@ -22,50 +22,6 @@ if (!invitee) {
   Astro.response.status = 404
   Astro.response.statusText = 'Invitado no encontrado.'
 }
-
-let successMessage = ''
-const errors = { name: '', assisting: '', notes: '', form: '' }
-if (Astro.request.method === 'POST') {
-  try {
-    const data = await Astro.request.formData()
-    const name = data.get('name')
-    const notes = data.get('notes')
-    const slug = data.get('slug')
-    const assisting = data.get('assisting')
-
-    if (typeof name !== 'string' || name.length < 1) {
-      errors.name += 'Por favor ingrese su nombre. '
-    }
-    if (typeof assisting !== 'string' || assisting.length < 1) {
-      errors.assisting += 'Por favor confirme su asistencia. '
-    }
-
-    const hasErrors = Object.values(errors).some((msg) => msg)
-    if (!hasErrors) {
-      const res = await fetch(
-        `https://docs.google.com/forms/d/e/1FAIpQLSeq5ev4GlLobQLouotU8fMBsMZ8PJjADIofhAzZhGchdqTB-A/formResponse?submit=Submit?usp=pp_url&entry.2029760352=${name}&entry.751411364=${assisting}&entry.266478440=${notes}&entry.1093102812=${slug}`
-      )
-
-      if (res.status == 200) {
-        const resHtml = await res.text()
-
-        if (
-          resHtml.includes('no longer accepting responses') ||
-          resHtml.includes('ya no acepta respuestas')
-        ) {
-            errors.form = 'Lo sentimos. El formulario se encuentra cerrado.'
-        } else {
-            successMessage = 'Hemos recibido tu confirmación, gracias.'
-
-        }
-      }
-    }
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message)
-    }
-  }
-}
 ---
 
 <Layout title='Lina & Victor'>
@@ -77,8 +33,6 @@ if (Astro.request.method === 'POST') {
     <RSVP
       slug={invitee.slug}
       name={invitee.name}
-      errors={errors}
-      successMessage={successMessage}
     />
   </main>
 </Layout>

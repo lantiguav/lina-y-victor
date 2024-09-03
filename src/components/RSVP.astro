@@ -1,5 +1,5 @@
 ---
-const { slug, name, errors, successMessage } = Astro.props
+const { slug, name } = Astro.props
 const inputDisabled = name ? true : false
 ---
 
@@ -10,9 +10,8 @@ const inputDisabled = name ? true : false
     pronta respuesta para ayudarnos con la planificación del evento
   </p>
 
-  {successMessage && <p class='successBanner'>{successMessage}</p>}
-  {errors.form && <p class='errorBanner'>{errors.form}</p>}
-  <form method='POST' action='#rsvp'>
+  <p id='form-message' class='hidden'></p>
+  <form method='POST' id='rsvp-form'>
     <label>
       <span class='label'>Tu nombre</span>
       <input
@@ -24,22 +23,20 @@ const inputDisabled = name ? true : false
         readonly={inputDisabled}
       />
     </label>
-    {errors.name && <p class='error'>{errors.name}</p>}
 
     <fieldset>
       <legend class='label'>¿Asistirás?</legend>
 
       <div class='radio-wrapper'>
-        <input type='radio' id='yes' name='assisting' value='Yes' required />
+        <input type='radio' id='yes' name='attending' value='Yes' required />
         <label for='yes'>Sí</label>
       </div>
 
       <div class='radio-wrapper'>
-        <input type='radio' id='no' name='assisting' value='No' />
+        <input type='radio' id='no' name='attending' value='No' />
         <label for='no'>No</label>
       </div>
     </fieldset>
-    {errors.assisting && <p class='error'>{errors.assisting}</p>}
 
     <label>
       <span class='label'>Notas (opcional)</span>
@@ -108,7 +105,7 @@ const inputDisabled = name ? true : false
     &:focus,
     &:focus-visible,
     &:active {
-        outline: none;
+      outline: none;
     }
   }
 
@@ -159,8 +156,47 @@ const inputDisabled = name ? true : false
 </style>
 
 <script>
-  // Prevent form submission on page reload
-  if (window.history.replaceState) {
-    window.history.replaceState(null, null, window.location.href)
-  }
+  const form = document.getElementById('rsvp-form')
+  const formMessage = document.getElementById('form-message')
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+
+    formMessage.classList.add('hidden')
+
+    const object = {}
+    formData.forEach((value, key) => (object[key] = value))
+    const json = JSON.stringify(object)
+
+    try {
+      const response = await fetch('api/submit-google-form', {
+        method: 'POST',
+        body: json,
+        headers: { 'Content-Type': 'application/json' },
+      })
+
+      const data = await response.json()
+
+      formMessage.innerHTML = data.message
+
+      if (response.status === 200) {
+        formMessage.classList.add('successBanner')
+        formMessage.classList.remove('errorBanner')
+        formMessage.classList.remove('hidden')
+      } else {
+        formMessage.classList.add('errorBanner')
+        formMessage.classList.remove('successBanner')
+        formMessage.classList.remove('hidden')
+      }
+    } catch (e) {
+        console.log(e)
+        formMessage.innerHTML = 'Se mensaje no pudo ser enviado debido a un error en el navegador.'
+
+        formMessage.classList.add('errorBanner')
+        formMessage.classList.remove('successBanner')
+        formMessage.classList.remove('hidden')
+
+    }
+  })
 </script>
