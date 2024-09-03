@@ -16,9 +16,9 @@ export default defineConfig({
   },
   integrations: [
     sentry({
-      dsn: 'https://ca49aa683b1a4c8d6a03df744ea5efe5@o4507891270746112.ingest.us.sentry.io/4507891276840960',
+      dsn: process.env.SENTRY_DSN,
       sourceMapsUploadOptions: {
-        project: 'javascript-astro',
+        project: process.env.SENTRY_PROJECT,
         authToken: process.env.SENTRY_AUTH_TOKEN,
       },
     }),
