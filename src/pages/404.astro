@@ -9,13 +9,20 @@ Astro.response.headers.set('Cache-Control', 'max-age=3600')
 <Layout title='Lina & Victor'>
   <main>
     <h1>Invitado no encontrado</h1>
+    <button id='error-button'>Throw test error</button>
   </main>
 </Layout>
 
 <style>
-    main {
-        display: grid;
-        min-height: 100svh;
-        place-content: center;
-    }
+  main {
+    display: grid;
+    min-height: 100svh;
+    place-content: center;
+  }
 </style>
+<script>
+  function handleClick() {
+    throw new Error('This is a test error')
+  }
+  document.querySelector('#error-button').addEventListener('click', handleClick)
+</script>
