@@ -19,8 +19,7 @@ if (slug === undefined) {
 }
 
 if (!invitee) {
-  Astro.response.status = 404
-  Astro.response.statusText = 'Invitado no encontrado.'
+    return Astro.redirect('/404', 404)
 }
 ---
 
