@@ -1,5 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro'
+
+Astro.response.headers.set('Vercel-CDN-Cache-Control', 'max-age=3600')
+Astro.response.headers.set('CDN-Cache-Control', 'max-age=3600')
+Astro.response.headers.set('Cache-Control', 'max-age=3600')
 ---
 
 <Layout title='Lina & Victor'>

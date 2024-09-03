@@ -19,8 +19,12 @@ if (slug === undefined) {
 }
 
 if (!invitee) {
-    return Astro.redirect('/404', 404)
+  return Astro.redirect('/404', 404)
 }
+
+Astro.response.headers.set('Vercel-CDN-Cache-Control', 'max-age=3600')
+Astro.response.headers.set('CDN-Cache-Control', 'max-age=3600')
+Astro.response.headers.set('Cache-Control', 'max-age=3600')
 ---
 
 <Layout title='Lina & Victor'>
@@ -29,10 +33,7 @@ if (!invitee) {
     <Details />
     <FAQs />
     <Gifts />
-    <RSVP
-      slug={invitee.slug}
-      name={invitee.name}
-    />
+    <RSVP slug={invitee.slug} name={invitee.name} />
   </main>
 </Layout>
 
