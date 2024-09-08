@@ -1,6 +1,8 @@
 ---
 const { slug, name } = Astro.props
 const inputDisabled = name ? true : false
+
+const moreThanOne = (/\s(y|e|and)\s/).test(name)
 ---
 
 <div class='rsvp' id='rsvp'>
@@ -13,7 +15,7 @@ const inputDisabled = name ? true : false
   <p id='form-message' class='hidden'></p>
   <form method='POST' id='rsvp-form'>
     <label>
-      <span class='label'>Invitado(s)</span>
+      <span class='label'> {moreThanOne ? 'Invitados' : 'Invitado'} </span>
       <input
         type='text'
         name='name'
@@ -25,7 +27,9 @@ const inputDisabled = name ? true : false
     </label>
 
     <fieldset>
-      <legend class='label'>¿Asistirás?</legend>
+      <legend class='label'>
+        {moreThanOne ? '¿Asistirán?' : '¿Asistirás?'}
+      </legend>
 
       <div class='radio-wrapper'>
         <input type='radio' id='yes' name='attending' value='Yes' required />
@@ -45,10 +49,7 @@ const inputDisabled = name ? true : false
 
     <input type='hidden' name='slug' value={slug} />
 
-    <button
-      id='form-button'
-      type='submit'
-      class='rsvp__button'>
+    <button id='form-button' type='submit' class='rsvp__button'>
       <span id='form-button-text' class='rsvp__button-text'> ENVIAR </span>
     </button>
   </form>
@@ -239,7 +240,7 @@ const inputDisabled = name ? true : false
     }
 
     button.classList.remove('rsvp__button--loading')
-    button.disabled = false;
+    button.disabled = false
     buttonText.innerHTML = 'Enviar'
   })
 </script>
