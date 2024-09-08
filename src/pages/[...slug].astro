@@ -9,12 +9,14 @@ import FAQs from '../components/FAQs.astro'
 import invitees from '../data/invitees.json'
 
 const { slug } = Astro.params
+let isRootPage = false
 
 let invitee = invitees.find((_invitee) => {
   return _invitee.slug === slug
 })
 
 if (slug === undefined) {
+  isRootPage = true
   invitee = { name: '', slug: '' }
 }
 
@@ -30,10 +32,10 @@ Astro.response.headers.set('Cache-Control', 'max-age=3600')
 <Layout title='Lina & Victor'>
   <main>
     <Hero name={invitee.name} />
-    <Details />
+    <Details hideLocation={isRootPage}/>
     <FAQs />
     <Gifts />
-    <RSVP slug={invitee.slug} name={invitee.name} />
+    { !isRootPage && <RSVP slug={invitee.slug} name={invitee.name} /> }
   </main>
 </Layout>
 

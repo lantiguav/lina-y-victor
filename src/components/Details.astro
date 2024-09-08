@@ -1,5 +1,5 @@
 ---
-const {} = Astro.props
+const { hideLocation } = Astro.props
 ---
 
 <div class='details'>
@@ -12,7 +12,13 @@ const {} = Astro.props
     <dd>6:00 de la tarde a 10:00 de la noche</dd>
 
     <dt class='heading-6'>Lugar</dt>
-    <dd>Event Spot. Plaza Las Américas II, Av. Winston Churchill</dd>
+    <dd>
+      {
+        hideLocation
+          ? 'Por favor consulta invitación para ver la dirección. Si no la encuentras o tienes dudas, pregúntanos directamente'
+          : 'Event Spot. Plaza Las Américas II, Av. Winston Churchill'
+      }
+    </dd>
 
     <dt class='heading-6'>Código de vestimenta</dt>
     <dd>
