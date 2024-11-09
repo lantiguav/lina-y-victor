@@ -35,5 +35,8 @@
     { "slug" : "christian-yuli", "name" : "Christian Yuli"},
     { "slug" : "smailyn-fernandez", "name" : "Smailyn Fernandez"},
     { "slug" : "anderson-martinez", "name" : "Anderson Martínez"},
-    { "slug" : "edgar-fulgencio", "name" : "Edgar Fulgencio"}
+    { "slug" : "edgar-fulgencio", "name" : "Edgar Fulgencio"},
+    { "slug" : "laura-lantigua", "name" : "Laura Lantigua", "declined" : true },
+    { "slug" : "enmanuel-rodriguez", "name" : "Enmanuel Rodriguez", "declined" : true },
+    { "slug" : "daniela-cerna", "name" : "Daniela Cerna", "declined" : true }
 ]
