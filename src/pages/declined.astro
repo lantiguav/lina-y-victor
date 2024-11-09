@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+Astro.response.headers.set('Vercel-CDN-Cache-Control', 'max-age=3600')
+Astro.response.headers.set('CDN-Cache-Control', 'max-age=3600')
+Astro.response.headers.set('Cache-Control', 'max-age=3600')
+---
+
+<Layout title='Lina & Victor'>
+  <main>
+    <h1>Invitación declinada</h1>
+    <p> Hemos registrado tu respuesta como una declinación a nuestra invitación. Si esto fue un error o si tienes alguna duda, no dudes en contactarnos; estaremos encantados de ayudarte. </p>
+    <p>Sabemos que no siempre es posible estar presentes en persona, pero si deseas acompañarnos de otra manera, aquí te dejamos el enlace a nuestra <a href='https://listaderegalos.casacuesta.com/Event/Victor-Lina' target="_blank">lista de regalos</a>. Apreciamos tu apoyo y cariño en este momento tan especial.</p>
+    <p>Con afecto, <br> Lina y Victor</p>
+  </main>
+</Layout>
+
+<style>
+  main {
+    display: grid;
+    min-height: 100svh;
+    place-content: center;
+    max-width: 50rem;
+    margin: 0 auto;
+    gap: 1rem;
+  }
+  h1 {
+    margin-bottom: 1rem;
+  }
+</style>

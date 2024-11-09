@@ -7,9 +7,18 @@ import Gifts from '../components/Gifts.astro'
 import FAQs from '../components/FAQs.astro'
 
 import invitees from '../data/invitees.json'
+import declinedInvitees from '../data/declined-invitees.json'
 
 const { slug } = Astro.params
 let isRootPage = false
+
+let declinedInvitee = declinedInvitees.find((_invitee) => {
+  return _invitee.slug === slug
+})
+
+if(declinedInvitee) {
+  return Astro.redirect('/declined')
+}
 
 let invitee = invitees.find((_invitee) => {
   return _invitee.slug === slug

@@ -13,7 +13,6 @@
     { "slug" : "deonte-smith", "name" : "Deonte Smith"},
     { "slug" : "hypatia-munoz", "name" : "Hypatia Muñoz y un acompañante"},
     { "slug" : "nelson-fernandez", "name" : "Nelson Fernandez"},
-    { "slug" : "daniela-cerna", "name" : "Daniela Cerna"},
     { "slug" : "gabriel-morales", "name" : "Gabriel Morales"},
     { "slug" : "katherine-nunez", "name" : "Katherine Núñez"},
     { "slug" : "ypatia-bello", "name" : "Ypatia Bello"},
@@ -30,11 +29,11 @@
     { "slug" : "nadia-lantigua", "name" : "Nadia Lantigua"},
     { "slug" : "anacaona-santana", "name" : "Anacaona Santana"},
     { "slug" : "brenda-lantigua", "name" : "Brenda Lantigua"},
-    { "slug" : "laura-lantigua", "name" : "Laura Lantigua"},
-    { "slug" : "enmanuel-rodriguez", "name" : "Enmanuel Rodriguez"},
     { "slug" : "karla-portes", "name" : "Karla Portes"},
     { "slug" : "carmen-nunez", "name" : "Carmen Núñez"},
     { "slug" : "clara-pena", "name" : "Clara Peña"},
     { "slug" : "christian-yuli", "name" : "Christian Yuli"},
-    { "slug" : "smailyn-fernandez", "name" : "Smailyn Fernandez"}
+    { "slug" : "smailyn-fernandez", "name" : "Smailyn Fernandez"},
+    { "slug" : "anderson-martinez", "name" : "Anderson Martínez"},
+    { "slug" : "edgar-fulgencio", "name" : "Edgar Fulgencio"}
 ]
