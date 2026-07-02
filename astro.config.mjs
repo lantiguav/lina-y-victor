@@ -1,5 +1,5 @@
 import { defineConfig, passthroughImageService } from 'astro/config'
-import vercel from '@astrojs/vercel/serverless'
+import vercel from '@astrojs/vercel'
 
 import sentry from '@sentry/astro'
 
